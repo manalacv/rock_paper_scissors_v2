@@ -1,6 +1,26 @@
 // Step 1: Variable for player choice
 let playerChoice = 'rock'
 
+// Step 5: Function for player selection via prompt
+function playerSelection() {
+  let playerOption = String(
+    prompt('What is your choice? Rock, Paper, or Scissors?')
+  )
+  // Case Sensitivity
+  playerOption = playerOption.toLowerCase()
+  if (
+    playerOption !== 'rock' &&
+    playerOption !== 'paper' &&
+    playerOption !== 'scissors'
+  ) {
+    return 'This is not a valid input. Please enter a valid answer'
+  } else {
+    return playerOption
+  }
+}
+
+console.log(playerSelection())
+
 // Step 2: Function for Computer Choice
 function getComputerChoice() {
   let computerOptions = ['rock', 'paper', 'scissors']
@@ -24,7 +44,6 @@ function playRound(playerChoice, computerSelection) {
   }
 }
 
-console.log(playRound(playerChoice, computerSelection))
 let result = playRound()
 
 // Step 4: New function that plays a round 5 times
@@ -37,5 +56,3 @@ function game(numRounds) {
   }
   return result
 }
-
-game()
