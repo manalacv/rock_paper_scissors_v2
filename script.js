@@ -1,4 +1,5 @@
 // Step 1: Variable for player choice
+let playerChoice = 'rock'
 
 // Step 2: Function for Computer Choice
 function getComputerChoice() {
@@ -8,7 +9,6 @@ function getComputerChoice() {
   return computerPick
 }
 
-let playerChoice = 'rock'
 let computerSelection = getComputerChoice()
 
 // Step 3: Play a single round of RPS
@@ -25,3 +25,17 @@ function playRound(playerChoice, computerSelection) {
 }
 
 console.log(playRound(playerChoice, computerSelection))
+let result = playRound()
+
+// Step 4: New function that plays a round 5 times
+function game(numRounds) {
+  for (let i = 0; i < 5; i++) {
+    let playerChoice = 'rock'
+    let computerSelection = getComputerChoice()
+    console.log(playRound(playerChoice, computerSelection))
+    let result = playRound()
+  }
+  return result
+}
+
+game()
