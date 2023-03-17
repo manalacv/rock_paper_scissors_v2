@@ -1,11 +1,8 @@
-// Step 1: Variable for player choice
-let playerChoice = 'rock'
-
-// Step 5: Function for player selection via prompt
-function playerSelection() {
+function playerChoice() {
   let playerOption = String(
     prompt('What is your choice? Rock, Paper, or Scissors?')
   )
+
   // Case Sensitivity
   playerOption = playerOption.toLowerCase()
   if (
@@ -19,9 +16,6 @@ function playerSelection() {
   }
 }
 
-console.log(playerSelection())
-
-// Step 2: Function for Computer Choice
 function getComputerChoice() {
   let computerOptions = ['rock', 'paper', 'scissors']
   let computerPick =
@@ -29,30 +23,70 @@ function getComputerChoice() {
   return computerPick
 }
 
-let computerSelection = getComputerChoice()
-
 // Step 3: Play a single round of RPS
-function playRound(playerChoice, computerSelection) {
-  if (playerChoice === computerSelection) {
+function playRound(playerSelection, computerSelection) {
+  // Condition: Tie
+  if (playerSelection === computerSelection) {
     return 'The result is a tie.'
-  } else if (computerSelection === 'paper') {
-    return `You lose. ${computerSelection} beats ${playerChoice}`
-  } else if (computerSelection === 'scissors') {
-    return `You win! ${playerChoice} beats ${computerSelection}`
+    // Condition 1: Computer = Paper and Player = Rock
+  } else if (computerSelection === 'paper' && playerSelection === 'rock') {
+    return `You lose. The computer selected ${
+      computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
+    }, and that beats your choice of ${
+      playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
+    }`
+    // Condition 2: Computer = Scissors and Player = Rock
+  } else if (computerSelection === 'scissors' && playerSelection === 'rock') {
+    return `You win! ${
+      playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
+    } beats ${
+      computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
+    }`
+    // Condition 3: Computer = Paper and Player = Scissors
+  } else if (computerSelection === 'paper' && playerSelection === 'scissors') {
+    return `You win! ${
+      playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
+    } beats ${
+      computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
+    }`
+    // Condition 4: Computer = Scissors and Player = Paper
+  } else if (computerSelection === 'scissors' && playerSelection === 'paper') {
+    return `You lose. The computer selected ${
+      computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
+    }, and that beats your choice of ${
+      playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
+    }`
+    // Condition 5: Computer = Rock and Player = Paper
+  } else if (computerSelection === 'rock' && playerSelection === 'paper') {
+    return `You win! ${
+      playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
+    } beats ${
+      computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
+    }`
+    // Condition 6: Computer = Rock and Player = Scissors
+  } else if (computerSelection === 'rock' && playerSelection === 'scissors') {
+    return `You lose. The computer selected ${
+      computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
+    }, and that beats your choice of ${
+      playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
+    }`
   } else {
     return 'No round was played'
   }
 }
 
-let result = playRound()
-
 // Step 4: New function that plays a round 5 times
 function game(numRounds) {
-  for (let i = 0; i < 5; i++) {
-    let playerChoice = 'rock'
+  let roundResult
+
+  for (let i = 0; i < numRounds; i++) {
+    let playerSelection = playerChoice()
     let computerSelection = getComputerChoice()
-    console.log(playRound(playerChoice, computerSelection))
-    let result = playRound()
+    roundResult = playRound(playerSelection, computerSelection)
+    console.log(roundResult)
   }
-  return result
+
+  return roundResult
 }
+
+game(5)
